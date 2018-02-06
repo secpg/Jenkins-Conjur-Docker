@@ -13,9 +13,10 @@ RUN	apt-get update &&\
 	apt-get install -f -y &&\
 	rm -f summon-linux-amd64.tar.gz &&\
 	rm -f conjur_5.4.0-1_amd64.deb &&\
-	curl -fsSL get.docker.com -o get-docker.sh &&\
-	sh get-docker.sh &&\
-	usermod -aG docker jenkins &&\
+	curl -L -O https://github.com/cyberark/summon-conjur/releases/download/v0.5.0/summon-conjur-linux-amd64.tar.gz &&\
+	tar -xvzf summon-conjur-linux-amd64.tar.gz &&/
+	mkdir -p /usr/local/lib/summon/ &&\
+	mv summon-conjur /usr/local/lib/summon/ &&\
 	apt-get clean &&\
 	rm -rf \
 	/tmp/* \
